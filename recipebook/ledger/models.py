@@ -29,7 +29,7 @@ class Recipe(models.Model):
         verbose_name = 'recipe'
         verbose_name_plural = 'recipes'
 
-class RecipeIngredients(models.Model):
+class RecipeIngredient(models.Model):
     quantity = models.IntegerField()
 
     ingredient = models.ForeignKey(

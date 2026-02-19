@@ -1,84 +1,24 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Recipe, Ingredient, RecipeIngredient
 
-CTX = {
-        "recipes": [{
-            "name": "Recipe 1",
-            "ingredients": [
-                {
-                    "name": "tomato",
-                    "quantity": "3pcs"
-                },
-                {
-                    "name": "onion",
-                    "quantity": "1pc"
-                },
-                {
-                    "name": "pork",
-                    "quantity": "1kg"
-                },
-                {
-                    "name": "water",
-                    "quantity": "1L"
-                },
-                {
-                    "name": "sinigang mix",
-                    "quantity": "1 packet"
-                }
-            ],
-            "link": "/recipe/1"
-        },
-        {
-            "name": "Recipe 2",
-            "ingredients": [
-                {
-                    "name": "garlic",
-                    "quantity": "1 head"
-                },
-                {
-                    "name": "onion",
-                    "quantity": "1pc"
-                },
-                {
-                    "name": "vinegar",
-                    "quantity": "1/2 cup"
-                },
-                {
-                    "name": "water",
-                    "quantity": "1 cup"
-                },
-                {
-                    "name": "salt",
-                    "quantity": "1 tablespoon"
-                },
-                {
-                    "name": "whole black peppers",
-                    "quantity": "1 tablespoon"
-                },
-                {
-                    "name": "pork",
-                    "quantity": "1 kilo"
-                }
-            ],
-            "link": "/recipe/2"
-        }
-    ]
-} 
 
 def index(request):
     return HttpResponse('Welcome to the Ledger App!')
 
 def recipes(request):
+    
+    recipe = Recipe.objects.get(pk=id)
 
-    return render(request, "ledger/recipes.html", CTX)
+    return render(request, "ledger/recipes.html", {
+        "recipe": recipe,
+    })
 
 def recipe(request, id):
 
-    ctx = {"recipe": CTX["recipes"][id - 1]}
+    ingredients = Ingredient.objects.get(pk=id)
 
-    return render(request, "ledger/recipe.html", ctx)
+    return render(request, "ledger/recipe.html", {
+        "ingredients": ingredients
+    })
     
-
-
-
-# Create your views here.
