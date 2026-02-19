@@ -1,24 +1,32 @@
 from django.shortcuts import render
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
 from django.http import HttpResponse
 from .models import Recipe, Ingredient, RecipeIngredient
-
 
 def index(request):
     return HttpResponse('Welcome to the Ledger App!')
 
 def recipes(request):
     
-    recipe = Recipe.objects.get(pk=id)
+    recipes = Recipe.objects.all()
 
     return render(request, "ledger/recipes.html", {
-        "recipe": recipe,
+        "recipes": recipes,
     })
 
 def recipe(request, id):
 
-    ingredients = Ingredient.objects.get(pk=id)
+    recipe = Recipe.objects.get(pk=id)
 
     return render(request, "ledger/recipe.html", {
-        "ingredients": ingredients
+        "recipe": recipe,
     })
-    
+
+class RecipeListView(ListView):
+    model = Recipe
+    template_name = 'ledger/recipes.html'
+
+class RecipeDetailView(DetailView):
+    model = Recipe
+    template_name = 'ledger/recipe.html'
