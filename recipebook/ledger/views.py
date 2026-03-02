@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Recipe
+from django.contrib. auth.decorators import login_required
 
 def index(request):
     return HttpResponse('Welcome to the Ledger App!')
@@ -13,6 +14,7 @@ def recipes(request):
         "recipes": recipes,
     })
 
+@login_required
 def recipe(request, id):
 
     recipe = Recipe.objects.get(id=id)
