@@ -1,5 +1,7 @@
 {% include 'base.html' %}
 
+{% block header %}<h3> Login Page </h3>{% endblock %}
+
 {% block content %}
     <form method="POST">
         {% csrf_token %}

@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
 {% load static %} 
 
+{% block header %}<h3> Recipe Detail </h3> {% endblock %}
 {% block title %} {{recipe.name}} {% endblock %}
 
 {% block content %}
-    Recipe Name: {{ recipe.name }}
-    Author: {{ recipe.author.name }}
-
-    Created on: {{ recipe.created_on }}
-    Last updated: {{ recipe.updated_on }}
+    <strong> Name: </strong> {{ recipe.name }}
     <br>
-    Ingredients: 
+    <strong> Author: </strong> {{ recipe.author.name }}
+    <br>
+    <strong> Created on: </strong> {{ recipe.created_on }}
+    <br>
+    <strong> Updated: </strong> {{ recipe.updated_on }}
+    <br>
+    <br>
+    <strong> Ingredients: </strong>
         <ul>
             {% for ingredient in recipe.ingredients.all %}
             <li>Name: {{ingredient.ingredient.name}}</li>
