@@ -5,6 +5,10 @@
 
 {% block content %}
     Recipe Name: {{ recipe.name }}
+    Author: {{ recipe.author.name }}
+
+    Created on: {{ recipe.created_on }}
+    Last updated: {{ recipe.updated_on }}
     <br>
     Ingredients: 
         <ul>
