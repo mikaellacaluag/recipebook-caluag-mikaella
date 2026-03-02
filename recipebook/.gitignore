@@ -2,9 +2,10 @@ db.sqlite3
 .env
 *.pyc
 *.log
-.vscode
+
 .ruff_cache
 
 __pycache__/
 env/
 myenv/
+.vscode/
