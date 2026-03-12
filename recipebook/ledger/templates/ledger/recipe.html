@@ -31,5 +31,9 @@
                 <p>{{ image.description }}</p>
             </div>
         {% endfor %}
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'add_image' recipe.pk %}">Add Image</a>
+        {% endif %}
 {% endblock %}
 
