@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Recipe
+from .models import Recipe, RecipeImage
 from django.contrib. auth.decorators import login_required
 
 def index(request):
@@ -22,3 +22,22 @@ def recipe(request, id):
     return render(request, "ledger/recipe.html", {
         "recipe": recipe,
     })
+
+def recipe_forms(request, id):
+    recipe = Recipe.objects.get(id=id)
+
+    if request.method == "POST":
+        image = request.FILES.get("recipe_image")
+        description = request.POST.get("description")
+
+        if image and description:
+            RecipeImage.objects.create(
+                recipe=recipe, recipe_image=image, description=description
+            )
+            return redirect(recipe.get_absolute_url())
+        
+    return render(request, "add_image.html",{
+        "recipe": recipe,
+    })
+        
+

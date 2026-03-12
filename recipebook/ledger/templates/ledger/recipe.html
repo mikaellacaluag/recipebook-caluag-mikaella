@@ -23,5 +23,13 @@
             </ul>
             {% endfor %}
         </ul>
+        <br>
+
+        {% for image in recipe.images.all %}
+            <div>
+                <img src="{{ image.recipe_image.url }}" alt="{{ image.description }}" width="300">
+                <p>{{ image.description }}</p>
+            </div>
+        {% endfor %}
 {% endblock %}
 
