@@ -23,6 +23,22 @@ def recipe(request, id):
         "recipe": recipe,
     })
 
+@login_required
+def add_recipe(request):
+
+    if request.method == "POST":
+        name = request.POST.get("name")
+
+        if name:
+            recipe = Recipe.objects.create(
+                name=name,
+                author=request.user.profile
+            )
+
+            return redirect(recipe.get_absolute_url())
+
+    return render(request, "ledger/add_recipe.html")
+
 def recipe_forms(request, id):
     recipe = Recipe.objects.get(id=id)
 
@@ -36,7 +52,7 @@ def recipe_forms(request, id):
             )
             return redirect(recipe.get_absolute_url())
         
-    return render(request, "add_image.html",{
+    return render(request, "ledger/add_image.html",{
         "recipe": recipe,
     })
         

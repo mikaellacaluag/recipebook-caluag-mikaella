@@ -43,9 +43,6 @@ class RecipeIngredientAdmin(admin.ModelAdmin):
     fieldsets = [("Details", {"fields": [("ingredient", "quantity"), "recipe"]})]
 
 
-
-
-
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 

@@ -33,7 +33,7 @@
         {% endfor %}
 
         {% if user.is_authenticated %}
-            <a href="{% url 'add_image' recipe.pk %}">Add Image</a>
+            <a href="{% url 'ledger:recipe_forms' recipe.id %}">Add Image</a>
         {% endif %}
 {% endblock %}
 
