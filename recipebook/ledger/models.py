@@ -68,3 +68,17 @@ class RecipeIngredient(models.Model):
         verbose_name = "recipe ingredient"
         verbose_name_plural = "recipe ingredients"
         unique_together = ("recipe", "ingredient")
+
+
+class RecipeImage(models.Model):
+    recipe_image = models.ImageField(upload_to='images', null=False)
+    description = models.CharField(max_length=255)
+
+    recipe = models.ForeignKey(
+        Recipe, on_delete=models.CASCADE, related_name="images"
+    )
+
+    def __str__(self):
+        return self.description
+
+    
